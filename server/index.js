@@ -11,9 +11,9 @@ import bodyParser from 'body-parser';
 
 const app = express()
 dotenv.config()
-app.use(bodyParser.json({ limit: '30mb', extended: true }))
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
-app.use(cors()) 
+app.use(bodyParser.json({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
 const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGO);
@@ -22,11 +22,11 @@ const connect = async () => {
         throw error;
     }
 }
-mongoose.connection.on("disconnected",()=>{
+mongoose.connection.on("disconnected", () => {
     console.log("mongodb disconnected")
 })
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.send("hello !!")
 })
 app.use(cookieParser())
@@ -34,10 +34,10 @@ app.use(express.json())
 
 
 
-app.use("/server/auth",authRoute)
-app.use("/server/users",usersRoute)
-app.use("/server/hotels",hotelsRoute)
-app.use("/server/rooms",roomsRoute)
+app.use("/server/auth", authRoute)
+app.use("/server/users", usersRoute)
+app.use("/server/hotels", hotelsRoute)
+app.use("/server/rooms", roomsRoute)
 
 // app.use((err,req,res,next)=>{
 //     const errorStatus=err.status||500
