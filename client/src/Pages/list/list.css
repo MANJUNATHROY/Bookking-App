@@ -1,0 +1,84 @@
+.listContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.listWrapper{
+    display: flex;
+    width: 100%;
+    max-width: 1024px;
+    gap:10px;
+}
+
+.listSearch{
+    flex:1;
+    background-color: #febb02;
+    padding:10px;
+    border-radius: 10px;
+    position: sticky;
+    top:10px;
+    height:max-content
+}
+.lsItem{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    margin-bottom: 10px;
+}
+
+.lsItem>label{
+    font-size: 14px;
+}
+
+.lsItem>input{
+    border:none;
+    outline:none;
+    border-radius: 5px;
+    height:35px;
+}
+
+.lsItem>span{
+    height:30px;
+    padding: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lsTitle{
+    font-size: 20px;
+    color:#555;
+    margin-bottom: 10px;
+    
+}
+
+.lsOptionItem{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color:#555;
+    font-size: 12px;
+}
+
+.listResult{
+    flex:3
+}
+.lsOptions{
+    padding: 10px;
+}
+.lsOptionInput{
+    width: 50px;
+}
+
+.listSearch>button{
+    padding:10px;
+    border:none;
+    outline:none;
+    background-color: #0071c2;
+    color: white;
+    width:100%;
+    cursor: pointer;
+}
