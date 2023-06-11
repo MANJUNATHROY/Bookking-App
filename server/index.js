@@ -7,8 +7,13 @@ import usersRoute from './routes/users.js'
 import hotelsRoute from './routes/hotels.js'
 import roomsRoute from './routes/rooms.js'
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
 const app = express()
 dotenv.config()
+app.use(bodyParser.json({ limit: '30mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+app.use(cors()) 
 const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGO);
@@ -22,31 +27,28 @@ mongoose.connection.on("disconnected",()=>{
 })
 
 app.get("/",(req,res)=>{
-    res.send("hello")
+    res.send("hello !!")
 })
-
-
-
 app.use(cookieParser())
 app.use(express.json())
 
 
-app.use(cors()) 
+
 app.use("/server/auth",authRoute)
 app.use("/server/users",usersRoute)
 app.use("/server/hotels",hotelsRoute)
 app.use("/server/rooms",roomsRoute)
 
-app.use((err,req,res,next)=>{
-    const errorStatus=err.status||500
-    const errorMessage=err.message||"something went wrong"
-    return res.status(errorStatus).json({
-        success:false,
-        status:errorStatus,
-        message:errorMessage,
-        stack:err.stack,
-    })
-})
+// app.use((err,req,res,next)=>{
+//     const errorStatus=err.status||500
+//     const errorMessage=err.message||"something went wrong"
+//     return res.status(errorStatus).json({
+//         success:false,
+//         status:errorStatus,
+//         message:errorMessage,
+//         stack:err.stack,
+//     })
+// })
 
 app.listen(8800, () => {
     connect()
