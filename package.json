@@ -3,19 +3,21 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "start": "node index.js"
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "start": "node index.js"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/MANJUNATHROY/Bookking-App.git"
+        "type": "git",
+        "url": "git+https://github.com/MANJUNATHROY/Bookking-App.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/MANJUNATHROY/Bookking-App/issues"
+        "url": "https://github.com/MANJUNATHROY/Bookking-App/issues"
     },
-    "homepage": "https://github.com/MANJUNATHROY/Bookking-App#readme"
-  }
-  
+    "homepage": "https://github.com/MANJUNATHROY/Bookking-App#readme",
+    "dependencies": {
+        "react-scripts": "^5.0.1"
+    }
+}
