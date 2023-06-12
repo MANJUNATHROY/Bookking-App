@@ -11,14 +11,16 @@ const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState([])
+  console.log(path)
   const dataUser = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/${path}`,
     {
-      headers: {
+      Headers: {
         token: JSON.parse(localStorage.getItem("user")).token
       },
     }
   );
   const data = dataUser.data;
+  console.log(data)
   const loading = dataUser.loading;
 
   useEffect(() => {
