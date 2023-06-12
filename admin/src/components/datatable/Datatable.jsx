@@ -7,28 +7,36 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 
-const Datatable = ({columns}) => {
-  const location=useLocation();
-  const path=location.pathname.split("/")[1];
-  const [list,setList]=useState([])
-  const dataUser = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/${path}`);
-  const data=dataUser.data;
-  const loading=dataUser.loading;
+const Datatable = ({ columns }) => {
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const [list, setList] = useState([])
+  const dataUser = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/${path}`,
+    {
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")).token
+      },
+    }
+  );
+  const data = dataUser.data;
+  const loading = dataUser.loading;
 
-  useEffect(()=>{
+  useEffect(() => {
     setList(data);
-  },[data]);
+  }, [data]);
 
-  const handleDelete = async(id) => {
-    try{
+  const handleDelete = async (id) => {
+    try {
       await axios.delete(`https://bookking-app-manjunathroy.onrender.com/server/${path}/${id}`,
-      {headers: {
-        token: JSON.parse(localStorage.getItem("user")).accessToken
-    },}
-    )
+        {
+          headers: {
+            token: JSON.parse(localStorage.getItem("user")).token
+          },
+        }
+      )
       setList(list.filter((item) => item._id !== id));
 
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
   };
@@ -70,7 +78,7 @@ const Datatable = ({columns}) => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
-        getRowId={(row)=>row._id}
+        getRowId={(row) => row._id}
       />
     </div>
   );

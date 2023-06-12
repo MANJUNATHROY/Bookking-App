@@ -41,14 +41,15 @@ const NewHotel = () => {
       const newhotel = {
         ...info, rooms, photos: list
       }
-      const token=JSON.parse(localStorage.getItem("user")).accessToken;
-      console.log(token)
+      const token=JSON.parse(localStorage.getItem("user")).token;
       await axios.post("https://bookking-app-manjunathroy.onrender.com/server/hotels", newhotel,
         {
           headers: {
-            token:  token
-          },
+            token: `Bearer ${token}`
+          }
         });
+
+      
 
     } catch (err) {
       console.log(err);

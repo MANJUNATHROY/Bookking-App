@@ -21,7 +21,7 @@ const Login = () => {
         try{
             const res=await axios.post("https://bookking-app-manjunathroy.onrender.com/server/auth/login",credentials)
             if(res.data.isAdmin){
-                dispatch({type:"LOGIN_SUCCESS",payload:res.data.details})
+                dispatch({type:"LOGIN_SUCCESS",payload:res.data})
                 navigate("/")
             }else{
                 dispatch({type:"LOGIN_FAILURE",payload:{message:"you are not allowed"},})

@@ -26,7 +26,7 @@ const New = ({ inputs, title }) => {
       const newUser={...info,img:url,}
       await axios.post("https://bookking-app-manjunathroy.onrender.com/server/auth/register",newUser,
       {headers: {
-        token: "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken
+        token: "Bearer "+JSON.parse(localStorage.getItem("user")).token
     },});
     }catch(err){
       console.log(err)

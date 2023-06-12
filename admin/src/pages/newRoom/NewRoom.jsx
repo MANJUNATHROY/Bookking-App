@@ -30,7 +30,7 @@ const NewRoom = () => {
       }
       await axios.post(`https://bookking-app-manjunathroy.onrender.com/server/rooms/${hotelId}`, newroom,
       {headers: {
-        token: JSON.parse(localStorage.getItem("user")).accessToken
+        token: JSON.parse(localStorage.getItem("user")).token
     },});
 
     } catch (err) {
