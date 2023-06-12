@@ -12,7 +12,7 @@ const NewRoom = () => {
   const [hotelId, setHotelId] = useState(undefined)
   const [rooms, setRooms] = useState([])
 
-  const dataHotel = useFetch("/hotels");
+  const dataHotel = useFetch("https://bookking-app-manjunathroy.onrender.com/server/hotels");
   const data = dataHotel.data;
   const loading = dataHotel.loading;
 
@@ -28,7 +28,10 @@ const NewRoom = () => {
       const newroom = {
         ...info, roomNumbers
       }
-      await axios.post(`/rooms/${hotelId}`, newroom);
+      await axios.post(`https://bookking-app-manjunathroy.onrender.com/server/rooms/${hotelId}`, newroom,
+      {headers: {
+        token: JSON.parse(localStorage.getItem("user")).accessToken
+    },});
 
     } catch (err) {
       console.log(err)

@@ -11,6 +11,8 @@ import bodyParser from 'body-parser';
 
 const app = express()
 dotenv.config()
+app.use(cookieParser())
+app.use(express.json())
 app.use(bodyParser.json({ extended: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
@@ -29,8 +31,7 @@ mongoose.connection.on("disconnected", () => {
 app.get("/", (req, res) => {
     res.send("hello !!")
 })
-app.use(cookieParser())
-app.use(express.json())
+
 
 
 
@@ -39,16 +40,16 @@ app.use("/server/users", usersRoute)
 app.use("/server/hotels", hotelsRoute)
 app.use("/server/rooms", roomsRoute)
 
-// app.use((err,req,res,next)=>{
-//     const errorStatus=err.status||500
-//     const errorMessage=err.message||"something went wrong"
-//     return res.status(errorStatus).json({
-//         success:false,
-//         status:errorStatus,
-//         message:errorMessage,
-//         stack:err.stack,
-//     })
-// })
+app.use((err,req,res,next)=>{
+    const errorStatus=err.status||500
+    const errorMessage=err.message||"something went wrong"
+    return res.status(errorStatus).json({
+        success:false,
+        status:errorStatus,
+        message:errorMessage,
+        stack:err.stack,
+    })
+})
 
 app.listen(8800, () => {
     connect()

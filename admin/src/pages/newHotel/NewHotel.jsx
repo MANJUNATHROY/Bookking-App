@@ -13,7 +13,7 @@ const NewHotel = () => {
   const [info, setInfo] = useState({})
   const [rooms, setRooms] = useState([])
 
-  const dataRoom = useFetch("/rooms");
+  const dataRoom = useFetch("https://bookking-app-manjunathroy.onrender.com/server/rooms");
   const data = dataRoom.data;
   const loading = dataRoom.loading;
 
@@ -26,22 +26,29 @@ const NewHotel = () => {
     setRooms(value)
   }
 
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     e.preventDefault()
     try {
-      const list = await Promise.all(Object.values(files).map(async(file) => {
+      const list = await Promise.all(Object.values(files).map(async (file) => {
         const data = new FormData()
 
         data.append("file", file)
         data.append("upload_preset", "lamadev")
-        const uploadRes= await axios.post("https://api.cloudinary.com/v1_1/dqlfkzkz8/image/upload",data)
-        const {url}=uploadRes.data;
+        const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dqlfkzkz8/image/upload", data)
+        const { url } = uploadRes.data;
         return url;
       }))
-      const newhotel={
-        ...info,rooms,photos:list
+      const newhotel = {
+        ...info, rooms, photos: list
       }
-      await axios.post("/hotels",newhotel);
+      const token=JSON.parse(localStorage.getItem("user")).accessToken;
+      console.log(token)
+      await axios.post("https://bookking-app-manjunathroy.onrender.com/server/hotels", newhotel,
+        {
+          headers: {
+            token:  token
+          },
+        });
 
     } catch (err) {
       console.log(err);

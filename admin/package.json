@@ -44,5 +44,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },"proxy":"https://bookking-app-manjunathroy.onrender.com/server"
+  },
+  "proxy": "https://bookking-app-manjunathroy.onrender.com/server"
 }

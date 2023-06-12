@@ -44,7 +44,7 @@ const Hotel = () => {
         setSlideNumber(newSlideno)
     }
 
-    const dataHotel = useFetch(`/hotels/find/${id}`);
+    const dataHotel = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/hotels/find/${id}`);
     const data = dataHotel.data;
     const loading = dataHotel.loading;
     const {user}=useContext(AuthContext)

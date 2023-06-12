@@ -19,7 +19,7 @@ const List = () => {
     const [max, setMax] = useState(undefined)
 
     const [options, setOptions] = useState(location.state.options);
-    const dataInfo = useFetch(`hotels?city=${destination}&min=${min || 0}&max=${max || 999}`)
+    const dataInfo = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`)
     const data=dataInfo.data
     const loading = dataInfo.loading
     const reFetch = dataInfo.reFetch

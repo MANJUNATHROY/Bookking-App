@@ -11,7 +11,7 @@ const Datatable = ({columns}) => {
   const location=useLocation();
   const path=location.pathname.split("/")[1];
   const [list,setList]=useState([])
-  const dataUser = useFetch(`/${path}`);
+  const dataUser = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/${path}`);
   const data=dataUser.data;
   const loading=dataUser.loading;
 
@@ -21,11 +21,15 @@ const Datatable = ({columns}) => {
 
   const handleDelete = async(id) => {
     try{
-      await axios.delete(`/${path}/${id}`)
+      await axios.delete(`https://bookking-app-manjunathroy.onrender.com/server/${path}/${id}`,
+      {headers: {
+        token: JSON.parse(localStorage.getItem("user")).accessToken
+    },}
+    )
       setList(list.filter((item) => item._id !== id));
 
     }catch(err){
-
+      console.log(err)
     }
   };
 

@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import { useEffect } from "react";
 
 const PropertyList = () => {
-    const { data, loading, error } = useFetch("/hotels/countByType")
+    const { data, loading, error } = useFetch("https://bookking-app-manjunathroy.onrender.com/server/hotels/countByType")
     // useEffect(() => {
     //     if (data) {
     //         console.log(data[0]);

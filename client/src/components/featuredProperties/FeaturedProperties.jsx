@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 
 const FeaturedProperties = () => {
 
-    const { data, loading, error } = useFetch("/hotels/?featured=true")
+    const { data, loading, error } = useFetch("https://bookking-app-manjunathroy.onrender.com/server/hotels/?featured=true")
 
     return (
         <div className="fp">

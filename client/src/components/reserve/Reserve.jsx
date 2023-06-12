@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
     const [selectedRooms, setSelectedRooms] = useState([])
-    const dataRoom = useFetch(`/hotels/room/${hotelId}`);
+    const dataRoom = useFetch(`https://bookking-app-manjunathroy.onrender.com/server/hotels/room/${hotelId}`);
     const data = dataRoom.data;
     const loading = dataRoom.loading;
     const navigate=useNavigate();
@@ -42,7 +42,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     const handleClick = async() => {
         try{
             await Promise.all(selectedRooms.map(roomId=>{
-                const res=axios.put(`/rooms/availability/${roomId}`,{dates:allDates})
+                const res=axios.put(`https://bookking-app-manjunathroy.onrender.com/server/rooms/availability/${roomId}`,{dates:allDates})
                 return res.data;
             }))
             setOpen(false)

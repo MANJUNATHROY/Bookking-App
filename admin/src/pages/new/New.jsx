@@ -20,10 +20,14 @@ const New = ({ inputs, title }) => {
     data.append("file",file)
     data.append("upload_preset","lamadev")
     try{
-      const uploadRes= await axios.post("https://api.cloudinary.com/v1_1/dqlfkzkz8/image/upload",data)
+      const uploadRes= await axios.post("https://api.cloudinary.com/v1_1/dqlfkzkz8/image/upload",data,
+      )
       const {url}=uploadRes.data
       const newUser={...info,img:url,}
-      await axios.post("/auth/register",newUser);
+      await axios.post("https://bookking-app-manjunathroy.onrender.com/server/auth/register",newUser,
+      {headers: {
+        token: "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken
+    },});
     }catch(err){
       console.log(err)
     }
